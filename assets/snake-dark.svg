@@ -1,30 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 140" width="100%" height="100%">
   <defs>
     <linearGradient id="grid-bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#090d16"/>
-      <stop offset="100%" stop-color="#0d111b"/>
+      <stop offset="0%" stop-color="#110726"/>
+      <stop offset="100%" stop-color="#1a0933"/>
     </linearGradient>
   </defs>
-  <rect width="850" height="140" rx="10" fill="url(#grid-bg)" stroke="#1e293b" stroke-width="1"/>
+  <rect width="850" height="140" rx="10" fill="url(#grid-bg)" stroke="#4c1d95" stroke-width="1.2"/>
 
   <!-- Contribution Heatmap Matrix Visual -->
   <g transform="translate(30, 24)">
-    <!-- Week columns -->
-    <!-- Helper scripts generate matrix of contribution cells -->
-    <!-- We generate 45 columns x 7 rows of stylish contribution dots -->
     <style>
-      .c0 { fill: #161b22; }
-      .c1 { fill: #0e4429; }
-      .c2 { fill: #006d32; }
-      .c3 { fill: #26a641; }
-      .c4 { fill: #39d353; }
+      .c0 { fill: #1c0e38; }
+      .c1 { fill: #3b1d6e; }
+      .c2 { fill: #581c87; }
+      .c3 { fill: #7e22ce; }
+      .c4 { fill: #a855f7; }
       .snake-head { fill: #38bdf8; }
-      .snake-body { fill: #818cf8; }
+      .snake-body { fill: #c084fc; }
     </style>
     
-    <!-- Render static aesthetic background grid dots -->
+    <!-- Render aesthetic background grid dots -->
     <g opacity="0.85">
-      <!-- Col 0 - 5 -->
       <rect x="0" y="0" width="12" height="12" rx="2.5" class="c0"/>
       <rect x="0" y="16" width="12" height="12" rx="2.5" class="c1"/>
       <rect x="0" y="32" width="12" height="12" rx="2.5" class="c2"/>
@@ -67,7 +63,6 @@
       <rect x="80" y="64" width="12" height="12" rx="2.5" class="c1"/>
       <rect x="80" y="80" width="12" height="12" rx="2.5" class="c3"/>
 
-      <!-- Col 6 - 15 -->
       <rect x="96" y="0" width="12" height="12" rx="2.5" class="c3"/>
       <rect x="96" y="16" width="12" height="12" rx="2.5" class="c0"/>
       <rect x="96" y="32" width="12" height="12" rx="2.5" class="c1"/>
@@ -117,7 +112,6 @@
       <rect x="192" y="64" width="12" height="12" rx="2.5" class="c3"/>
       <rect x="192" y="80" width="12" height="12" rx="2.5" class="c4"/>
 
-      <!-- Col 14 - 25 -->
       <rect x="208" y="0" width="12" height="12" rx="2.5" class="c4"/>
       <rect x="208" y="16" width="12" height="12" rx="2.5" class="c1"/>
       <rect x="208" y="32" width="12" height="12" rx="2.5" class="c2"/>
@@ -156,8 +150,8 @@
       <rect x="288" y="0" width="12" height="12" rx="2.5" class="c0"/>
       <rect x="288" y="16" width="12" height="12" rx="2.5" class="c1"/>
       <rect x="288" y="32" width="12" height="12" rx="2.5" class="c2"/>
-      <rect x="288" y="48" width="12" height="12" rx="2.5" class="c0"/>
-      <rect x="288" y="64" width="12" height="12" rx="2.5" class="c3"/>
+      <rect x="288" y="48" width="12" height="12" rx="2.5" class="c3"/>
+      <rect x="288" y="64" width="12" height="12" rx="2.5" class="c4"/>
       <rect x="288" y="80" width="12" height="12" rx="2.5" class="c2"/>
 
       <rect x="304" y="0" width="12" height="12" rx="2.5" class="c3"/>
@@ -209,7 +203,6 @@
       <rect x="400" y="64" width="12" height="12" rx="2.5" class="c2"/>
       <rect x="400" y="80" width="12" height="12" rx="2.5" class="c4"/>
 
-      <!-- Col 26 - 48 -->
       <rect x="416" y="0" width="12" height="12" rx="2.5" class="c0"/>
       <rect x="416" y="16" width="12" height="12" rx="2.5" class="c4"/>
       <rect x="416" y="32" width="12" height="12" rx="2.5" class="c3"/>
@@ -372,16 +365,14 @@
       <rect x="768" y="80" width="12" height="12" rx="2.5" class="c2"/>
     </g>
 
-    <!-- Animated Snake Eater moving across grid -->
+    <!-- Animated Snake Eater moving across grid in violet/cyan -->
     <g>
-      <!-- Snake Tail & Body -->
       <rect x="672" y="48" width="12" height="12" rx="2.5" class="snake-body" opacity="0.6"/>
       <rect x="688" y="48" width="12" height="12" rx="2.5" class="snake-body" opacity="0.8"/>
       <rect x="704" y="48" width="12" height="12" rx="2.5" class="snake-body" opacity="0.9"/>
-      <!-- Snake Head with Glow -->
       <rect x="720" y="48" width="12" height="12" rx="2.5" class="snake-head"/>
-      <!-- Target dot eating animation -->
-      <circle cx="742" cy="54" r="3.5" fill="#facc15">
+      <!-- Target dot eating animation in sky blue -->
+      <circle cx="742" cy="54" r="3.5" fill="#38bdf8">
         <animate attributeName="r" values="3.5;1.5;3.5" dur="1.2s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="1;0.4;1" dur="1.2s" repeatCount="indefinite" />
       </circle>
