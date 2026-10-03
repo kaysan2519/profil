@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16" />
+      <stop offset="50%" stop-color="#0d1322" />
+      <stop offset="100%" stop-color="#060911" />
+    </linearGradient>
+
+    <!-- Accent Glowing Mesh -->
+    <radialGradient id="cyan-glow" cx="10%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.18" />
+      <stop offset="100%" stop-color="#38bdf8" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="purple-glow" cx="90%" cy="85%" r="65%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="indigo-glow" cx="50%" cy="50%" r="40%">
+      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.12" />
+      <stop offset="100%" stop-color="#6366f1" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Subtle Dot Grid Pattern -->
+    <pattern id="dot-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#334155" fill-opacity="0.35" />
+    </pattern>
+
+    <!-- Title Gradient -->
+    <linearGradient id="title-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="55%" stop-color="#f1f5f9" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- Subtitle Gradient -->
+    <linearGradient id="accent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+
+    <!-- Card Background Gradient -->
+    <linearGradient id="card-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#0b0f19" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Filter for subtle drop shadow -->
+    <filter id="card-shadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <style>
+    .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    .font-mono { font-family: "JetBrains Mono", "Fira Code", Menlo, Monaco, Consolas, monospace; }
+  </style>
+
+  <!-- Base Canvas -->
+  <rect width="1200" height="400" rx="16" fill="url(#bg)" stroke="#1e293b" stroke-width="1.5" />
+
+  <!-- Ambient Glows -->
+  <rect width="1200" height="400" rx="16" fill="url(#cyan-glow)" />
+  <rect width="1200" height="400" rx="16" fill="url(#purple-glow)" />
+  <rect width="1200" height="400" rx="16" fill="url(#indigo-glow)" />
+
+  <!-- Dot Grid Overlay -->
+  <rect width="1200" height="400" rx="16" fill="url(#dot-grid)" />
+
+  <!-- Left Column: Branding & Info -->
+  <!-- Status Badge -->
+  <g transform="translate(60, 50)">
+    <rect width="320" height="30" rx="15" fill="#0f172a" stroke="#334155" stroke-width="1" />
+    <circle cx="16" cy="15" r="4.5" fill="#10b981">
+      <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <text x="30" y="19" class="font-mono" font-size="11" font-weight="600" fill="#94a3b8" letter-spacing="1">
+      READY FOR NEW OPPORTUNITIES
+    </text>
+  </g>
+
+  <!-- Name -->
+  <text x="60" y="145" class="font-sans" font-size="52" font-weight="800" fill="url(#title-gradient)" letter-spacing="-1.5">
+    Muhammad Kaysan
+  </text>
+
+  <!-- Role / Headline -->
+  <text x="60" y="185" class="font-sans" font-size="20" font-weight="600" fill="url(#accent-gradient)" letter-spacing="-0.2">
+    Full-Stack Software Engineer &amp; Frontend Specialist
+  </text>
+
+  <!-- Bio / Tagline -->
+  <text x="60" y="222" class="font-sans" font-size="14.5" font-weight="400" fill="#94a3b8">
+    Architecting performant web ecosystems, cross-platform apps, and scalable APIs
+  </text>
+  <text x="60" y="246" class="font-sans" font-size="14.5" font-weight="400" fill="#64748b">
+    with a strong emphasis on clean code architecture and fluid user experiences.
+  </text>
+
+  <!-- Tech Pills Row -->
+  <g transform="translate(60, 295)">
+    <!-- Pill 1: TypeScript -->
+    <g transform="translate(0, 0)">
+      <rect width="96" height="32" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <circle cx="16" cy="16" r="3" fill="#3178c6" />
+      <text x="27" y="20" class="font-sans" font-size="12" font-weight="600" fill="#cbd5e1">TypeScript</text>
+    </g>
+    <!-- Pill 2: Next.js -->
+    <g transform="translate(106, 0)">
+      <rect width="80" height="32" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <circle cx="16" cy="16" r="3" fill="#ffffff" />
+      <text x="27" y="20" class="font-sans" font-size="12" font-weight="600" fill="#cbd5e1">Next.js</text>
+    </g>
+    <!-- Pill 3: React -->
+    <g transform="translate(196, 0)">
+      <rect width="72" height="32" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <circle cx="16" cy="16" r="3" fill="#61dafb" />
+      <text x="27" y="20" class="font-sans" font-size="12" font-weight="600" fill="#cbd5e1">React</text>
+    </g>
+    <!-- Pill 4: Node.js -->
+    <g transform="translate(278, 0)">
+      <rect width="84" height="32" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <circle cx="16" cy="16" r="3" fill="#22c55e" />
+      <text x="27" y="20" class="font-sans" font-size="12" font-weight="600" fill="#cbd5e1">Node.js</text>
+    </g>
+    <!-- Pill 5: Flutter -->
+    <g transform="translate(372, 0)">
+      <rect width="76" height="32" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <circle cx="16" cy="16" r="3" fill="#02569b" />
+      <text x="27" y="20" class="font-sans" font-size="12" font-weight="600" fill="#cbd5e1">Flutter</text>
+    </g>
+    <!-- Pill 6: Tailwind CSS -->
+    <g transform="translate(458, 0)">
+      <rect width="102" height="32" rx="16" fill="#0f172a" stroke="#1e293b" stroke-width="1" />
+      <circle cx="16" cy="16" r="3" fill="#38bdf8" />
+      <text x="27" y="20" class="font-sans" font-size="12" font-weight="600" fill="#cbd5e1">TailwindCSS</text>
+    </g>
+  </g>
+
+  <!-- Right Column: Interactive-Style Terminal Card -->
+  <g transform="translate(710, 48)" filter="url(#card-shadow)">
+    <!-- Terminal Window -->
+    <rect width="430" height="300" rx="14" fill="url(#card-bg)" stroke="#334155" stroke-width="1.2" />
+
+    <!-- Terminal Header Bar -->
+    <path d="M 0 14 C 0 6.268 6.268 0 14 0 L 416 0 C 423.732 0 430 6.268 430 14 L 430 38 L 0 38 Z" fill="#0b0f19" />
+    <line x1="0" y1="38" x2="430" y2="38" stroke="#1e293b" stroke-width="1" />
+
+    <!-- macOS Style Window Dots -->
+    <circle cx="20" cy="19" r="5" fill="#ef4444" />
+    <circle cx="36" cy="19" r="5" fill="#f59e0b" />
+    <circle cx="52" cy="19" r="5" fill="#10b981" />
+
+    <!-- Terminal Tab Title -->
+    <text x="215" y="23" text-anchor="middle" class="font-mono" font-size="11" fill="#64748b">
+      kaysan.developer.ts
+    </text>
+
+    <!-- Code Content -->
+    <g transform="translate(24, 70)" class="font-mono" font-size="12.5" xml:space="preserve">
+      <!-- Line 1 -->
+      <text y="0">
+        <tspan fill="#c084fc">const</tspan> <tspan fill="#67e8f9">engineer</tspan> = {
+      </text>
+
+      <!-- Line 2 -->
+      <text y="24">
+        <tspan fill="#64748b">  name:</tspan> <tspan fill="#a7f3d0">"Muhammad Kaysan"</tspan>,
+      </text>
+
+      <!-- Line 3 -->
+      <text y="48">
+        <tspan fill="#64748b">  role:</tspan> <tspan fill="#a7f3d0">"Full-Stack Developer"</tspan>,
+      </text>
+
+      <!-- Line 4 -->
+      <text y="72">
+        <tspan fill="#64748b">  core:</tspan> [<tspan fill="#fde68a">"TypeScript"</tspan>, <tspan fill="#fde68a">"Next.js"</tspan>, <tspan fill="#fde68a">"Flutter"</tspan>],
+      </text>
+
+      <!-- Line 5 -->
+      <text y="96">
+        <tspan fill="#64748b">  backend:</tspan> [<tspan fill="#fde68a">"Node.js"</tspan>, <tspan fill="#fde68a">"Express"</tspan>, <tspan fill="#fde68a">"Prisma"</tspan>],
+      </text>
+
+      <!-- Line 6 -->
+      <text y="120">
+        <tspan fill="#64748b">  focus:</tspan> <tspan fill="#a7f3d0">"High-Performance Web &amp; UX"</tspan>,
+      </text>
+
+      <!-- Line 7 -->
+      <text y="144">
+        <tspan fill="#64748b">  availableForHire:</tspan> <tspan fill="#38bdf8">true</tspan>
+      </text>
+
+      <!-- Line 8 -->
+      <text y="168">
+        };
+      </text>
+
+      <!-- Line 9: Command prompt with blinking cursor -->
+      <text y="200">
+        <tspan fill="#38bdf8">➜</tspan> <tspan fill="#94a3b8">~</tspan> <tspan fill="#f1f5f9">crafting_exceptional_software()</tspan><tspan fill="#38bdf8">_</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
