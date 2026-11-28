@@ -23,14 +23,12 @@
       .eq-b { transform-box: fill-box; transform-origin: center; animation: eqPulse 1.2s ease-in-out infinite; }
       .eq-c { transform-box: fill-box; transform-origin: center; animation: eqPulse 1.5s ease-in-out infinite; }
 
-      @keyframes starSpin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+      @keyframes scanLine {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(76px); }
       }
-      .star-spin {
-        transform-box: fill-box;
-        transform-origin: center;
-        animation: starSpin 12s linear infinite;
+      .scan {
+        animation: scanLine 3s ease-in-out infinite;
       }
 
       @keyframes steamRise {
@@ -80,11 +78,33 @@
       </feMerge>
     </filter>
 
+    <!-- Red Glow for Barcode Scan Line -->
+    <filter id="scan-glow" x="-10%" y="-200%" width="120%" height="500%">
+      <feGaussianBlur stdDeviation="1.8" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
     <!-- Rubber Stamp Ink Roughness -->
     <filter id="ink-rough" x="-15%" y="-15%" width="130%" height="130%">
       <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="2" result="turb" />
       <feDisplacementMap in="SourceGraphic" in2="turb" scale="0.65" xChannelSelector="R" yChannelSelector="G" />
     </filter>
+
+    <!-- DEV PASS Notch Mask -->
+    <mask id="pass-notch">
+      <rect x="0" y="0" width="470" height="175" rx="10" fill="#ffffff" />
+      <circle cx="340" cy="0" r="11" fill="#000000" />
+      <circle cx="340" cy="175" r="11" fill="#000000" />
+    </mask>
+
+    <!-- Washi Tape Diagonal Stripe Pattern -->
+    <pattern id="washi" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="8" height="8" fill="#fbe7b0" />
+      <rect width="4" height="8" fill="#f2b544" />
+    </pattern>
 
     <!-- Cutting Mat Grid Patterns -->
     <pattern id="minor-grid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -143,11 +163,9 @@
   <rect width="1200" height="400" fill="url(#minor-grid)" />
   <rect width="1200" height="400" fill="url(#major-grid)" />
 
-  <!-- Top & Left Ruler Strips -->
   <rect x="0" y="0" width="1200" height="18" fill="url(#top-ruler)" />
   <rect x="0" y="0" width="18" height="400" fill="url(#left-ruler)" />
 
-  <!-- Top Ruler Numbers 1 to 11 -->
   <g class="font-mono" font-size="9" fill="#f4f1e6" opacity="0.82">
     <text x="104" y="14">1</text>
     <text x="204" y="14">2</text>
@@ -162,21 +180,19 @@
     <text x="1104" y="14">11</text>
   </g>
 
-  <!-- 45 deg Dashed Guide Line & Bottom-Right Protractor Arcs -->
   <line x1="0" y1="400" x2="400" y2="0" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.25" stroke-dasharray="6 6" />
   <circle cx="1200" cy="400" r="140" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.25" />
   <circle cx="1200" cy="400" r="90" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-opacity="0.25" />
 
-  <!-- Scattered Leaf / Mat Flecks -->
   <g fill="#2f5e25" opacity="0.7">
     <ellipse cx="215" cy="92" rx="4.5" ry="2" transform="rotate(-32 215 92)" />
-    <ellipse cx="445" cy="72" rx="5" ry="2.2" transform="rotate(24 445 72)" />
-    <ellipse cx="565" cy="48" rx="3.8" ry="1.8" transform="rotate(-18 565 48)" />
-    <ellipse cx="875" cy="272" rx="4.5" ry="2" transform="rotate(40 875 272)" />
-    <ellipse cx="178" cy="245" rx="4" ry="1.8" transform="rotate(-55 178 245)" />
-    <ellipse cx="525" cy="348" rx="5" ry="2.1" transform="rotate(15 525 348)" />
-    <ellipse cx="955" cy="222" rx="4" ry="1.9" transform="rotate(-25 955 222)" />
-    <ellipse cx="755" cy="340" rx="4.2" ry="1.8" transform="rotate(62 755 340)" />
+    <ellipse cx="425" cy="65" rx="5" ry="2.2" transform="rotate(24 425 65)" />
+    <ellipse cx="835" cy="52" rx="3.8" ry="1.8" transform="rotate(-18 835 52)" />
+    <ellipse cx="955" cy="245" rx="4.5" ry="2" transform="rotate(40 955 245)" />
+    <ellipse cx="32" cy="185" rx="4" ry="1.8" transform="rotate(-55 32 185)" />
+    <ellipse cx="305" cy="368" rx="5" ry="2.1" transform="rotate(15 305 368)" />
+    <ellipse cx="812" cy="378" rx="4" ry="1.9" transform="rotate(-25 812 378)" />
+    <ellipse cx="1015" cy="355" rx="4.2" ry="1.8" transform="rotate(62 1015 355)" />
   </g>
 
   <!-- Layer 3: Mechanical Keyboard (Top-Left) -->
@@ -270,11 +286,11 @@
     <use href="#key-std" x="267" y="98" />
   </g>
 
-  <!-- Layer 4: Note Paper "DON'T GIVE UP" (Top-Right) -->
+  <!-- Layer 4: Torn Note Paper with Washi Tape (Top-Right) -->
   <g transform="translate(985,-6) rotate(9)">
-    <rect x="0" y="0" width="200" height="185" rx="2" fill="#fbfaf4" filter="url(#note-shadow)" />
+    <path d="M 0,0 H 200 V 172 L 190,181 L 180,172 L 170,181 L 160,172 L 150,181 L 140,172 L 130,181 L 120,172 L 110,181 L 100,172 L 90,181 L 80,172 L 70,181 L 60,172 L 50,181 L 40,172 L 30,181 L 20,172 L 10,181 L 0,172 Z"
+          fill="#fbfaf4" filter="url(#note-shadow)" />
 
-    <!-- Ruled Notebook Lines -->
     <g stroke="#a9c4e8" stroke-width="1">
       <line x1="0" y1="26" x2="200" y2="26" />
       <line x1="0" y1="48" x2="200" y2="48" />
@@ -284,32 +300,30 @@
       <line x1="0" y1="136" x2="200" y2="136" />
       <line x1="0" y1="158" x2="200" y2="158" />
     </g>
-    <!-- Red Margin Line -->
-    <line x1="28" y1="0" x2="28" y2="185" stroke="#e57373" stroke-width="1.2" stroke-opacity="0.8" />
+    <line x1="28" y1="0" x2="28" y2="176" stroke="#e57373" stroke-width="1.2" stroke-opacity="0.8" />
 
-    <!-- Masking Tape -->
-    <rect x="65" y="-6" width="70" height="22" rx="1" fill="#efe3c2" opacity="0.82" transform="rotate(-6 100 5)" />
+    <!-- Striped Washi Tape -->
+    <rect x="60" y="-8" width="80" height="22" rx="1" fill="url(#washi)" opacity="0.85" transform="rotate(-6 100 3)" />
 
-    <!-- Handwriting Text -->
+    <!-- Note Text & Star Doodle -->
     <text x="38" y="42" class="font-hand" font-size="14" fill="#3a3a3a">note to myself:</text>
+    <polygon points="165,28 168,35.5 176,35.5 169.5,40 172,47.5 165,43 158,47.5 160.5,40 154,35.5 162,35.5"
+             fill="none" stroke="#e8622c" stroke-width="2" stroke-linejoin="round" />
     <text x="38" y="88" class="font-hand" font-size="34" font-weight="700" fill="#1e1e1e">DON'T</text>
     <text x="38" y="132" class="font-hand" font-size="34" font-weight="700" fill="#1e1e1e">GIVE UP</text>
     <path d="M 38 144 Q 72 138, 108 143 T 176 141" fill="none" stroke="#e8622c" stroke-width="3" stroke-linecap="round" />
   </g>
 
-  <!-- Layer 5: "Now Pushing" Equalizer Sticker (Replaces Spotify Code) -->
-  <g transform="translate(610,130) rotate(-18)">
-    <!-- Two Offset Dark Outlines for Layered Sticker Depth -->
+  <!-- Layer 5: "Now Pushing" Equalizer Sticker (Top-Centre) -->
+  <g transform="translate(470,20) rotate(3)">
     <path d="M 10,4 L 292,4 L 298,16 L 290,29 L 298,42 L 290,55 L 298,68 L 292,78 L 10,78 L 2,68 L 10,55 L 2,42 L 10,29 L 2,16 Z"
           fill="none" stroke="#111111" stroke-width="1.6" transform="translate(10, 10)" opacity="0.85" />
     <path d="M 10,4 L 292,4 L 298,16 L 290,29 L 298,42 L 290,55 L 298,68 L 292,78 L 10,78 L 2,68 L 10,55 L 2,42 L 10,29 L 2,16 Z"
           fill="none" stroke="#111111" stroke-width="1.6" transform="translate(5, 5)" opacity="0.92" />
 
-    <!-- Main Jagged Ticket Body -->
     <path d="M 10,4 L 292,4 L 298,16 L 290,29 L 298,42 L 290,55 L 298,68 L 292,78 L 10,78 L 2,68 L 10,55 L 2,42 L 10,29 L 2,16 Z"
           fill="#111111" stroke="#39d353" stroke-width="2.5" filter="url(#sticker-glow)" />
 
-    <!-- Git Branch Icon inside Green Circle -->
     <circle cx="40" cy="46" r="18" fill="#39d353" />
     <g stroke="#111111" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <line x1="34" y1="38" x2="34" y2="54" />
@@ -319,10 +333,8 @@
       <path d="M 46 44 C 46 49, 34 48, 34 52" />
     </g>
 
-    <!-- Status Mono Label -->
     <text x="68" y="21" class="font-mono" font-size="9.5" font-weight="700" fill="#39d353">now playing: git push origin main</text>
 
-    <!-- 22 Animated Equalizer Bars -->
     <g fill="#39d353">
       <rect class="eq-a" style="animation-delay:0.00s" x="68"  y="40" width="5" height="16" rx="2" />
       <rect class="eq-b" style="animation-delay:0.15s" x="77"  y="34" width="5" height="28" rx="2" />
@@ -349,102 +361,197 @@
     </g>
   </g>
 
-  <!-- Layer 6: Portfolio Label (Brown Stitched Tag) -->
-  <g transform="translate(230,165) rotate(-13)">
-    <!-- Shadow Block -->
-    <rect x="6" y="6" width="330" height="96" rx="4" fill="#3d2a19" opacity="0.5" />
-    <!-- Main Label -->
-    <rect x="0" y="0" width="330" height="96" rx="4" fill="#6b4a2e" />
-    <!-- Inner Dashed Stitching -->
-    <rect x="8" y="8" width="314" height="80" rx="2" fill="none" stroke="#f3e3c3" stroke-width="1.6" stroke-dasharray="6 5" />
+  <!-- Layer 6: Compact Portfolio Label (Left) -->
+  <g transform="translate(50,200) rotate(-10)">
+    <rect x="6" y="6" width="280" height="84" rx="4" fill="#3d2a19" opacity="0.5" />
+    <rect x="0" y="0" width="280" height="84" rx="4" fill="#6b4a2e" />
+    <rect x="8" y="8" width="264" height="68" rx="2" fill="none" stroke="#f3e3c3" stroke-width="1.6" stroke-dasharray="6 5" />
 
-    <!-- Small Tag Caption -->
-    <text x="24" y="27" class="font-mono" font-size="10" fill="#f3e3c3" opacity="0.82">// vol.01 &#8212; 2026</text>
+    <text x="22" y="26" class="font-mono" font-size="10" fill="#f3e3c3" opacity="0.82">// vol.02 &#8212; 2026</text>
+    <text x="22" y="68" class="font-display" font-size="44" fill="#fffaf0" letter-spacing="-1">Portfolio</text>
 
-    <!-- Display Wordmark -->
-    <text x="24" y="75" class="font-display" font-size="52" fill="#fffaf0" letter-spacing="-1">Portfolio</text>
-
-    <!-- Spinning Star Badge -->
-    <g transform="translate(298, 52)">
-      <circle cx="0" cy="0" r="16" fill="#f2c94c" />
-      <g class="star-spin">
-        <polygon points="0,-10 2.9,-3.8 9.5,-3.1 4.6,1.6 5.9,8.1 0,4.8 -5.9,8.1 -4.6,1.6 -9.5,-3.1 -2.9,-3.8" fill="#6b4a2e" />
-      </g>
+    <!-- Static Star Badge -->
+    <g transform="translate(252, 44)">
+      <circle cx="0" cy="0" r="14" fill="#f2c94c" />
+      <polygon points="0,-9 2.6,-3.4 8.5,-2.8 4.1,1.4 5.3,7.3 0,4.3 -5.3,7.3 -4.1,1.4 -8.5,-2.8 -2.6,-3.4" fill="#6b4a2e" />
     </g>
 
-    <!-- Yellow Corner Triangle Flag -->
-    <polygon points="300,-14 338,-4 318,22" fill="#e3e04b" />
+    <polygon points="252,-12 286,-3 268,20" fill="#e3e04b" />
   </g>
 
-  <!-- Layer 7: Tagline Tag -->
-  <g transform="translate(240,300) rotate(-9)">
-    <rect x="0" y="0" width="240" height="58" fill="none" stroke="#213f19" stroke-width="1.2" stroke-dasharray="3 3" />
-    <text x="15" y="25" class="font-display" font-size="19" fill="#213f19" opacity="0.5">Small commits,</text>
-    <text x="14" y="24" class="font-display" font-size="19" fill="#f2b544">Small commits,</text>
-    <text x="71" y="49" class="font-display" font-size="19" fill="#213f19" opacity="0.5">big things.</text>
-    <text x="70" y="48" class="font-display" font-size="19" fill="#f2b544">big things.</text>
+  <!-- Layer 7: Handwritten Tagline (Bottom-Left) -->
+  <g transform="translate(70,322) rotate(-5)">
+    <text x="1" y="1" class="font-hand" font-size="22" font-weight="700" fill="#213f19" opacity="0.5">small commits,</text>
+    <text x="0" y="0" class="font-hand" font-size="22" font-weight="700" fill="#f2b544">small commits,</text>
+    <text x="41" y="29" class="font-hand" font-size="22" font-weight="700" fill="#213f19" opacity="0.5">big things.</text>
+    <text x="40" y="28" class="font-hand" font-size="22" font-weight="700" fill="#f2b544">big things.</text>
+    <path d="M 40,36 Q 75,32 105,36 T 160,34" fill="none" stroke="#f2b544" stroke-width="2.5" stroke-linecap="round" />
   </g>
 
-  <!-- Layer 8: Name Card & Paperclip -->
-  <g transform="translate(490,235) rotate(-1.5)">
-    <!-- Solid Brown Shadow Block -->
-    <rect x="8" y="8" width="340" height="74" fill="#6b4a2e" />
-    <!-- Cream Name Card -->
-    <rect x="0" y="0" width="340" height="74" fill="#fbf6ea" stroke="#e4dcc8" stroke-width="1" />
-    <text x="20" y="40" class="font-display" font-size="27" fill="#5a3c22">Muhammad Kaysan</text>
-    <text x="20" y="61" class="font-mono" font-size="11.5" fill="#8a6a4a">fullstack developer &#183; @kaysan2519</text>
+  <!-- Layer 8: DEV PASS Boarding Pass (Hero) -->
+  <g transform="translate(370,140) rotate(-3)" filter="url(#soft-shadow)">
+    <g mask="url(#pass-notch)">
+      <!-- Cream Pass Body -->
+      <rect x="0" y="0" width="470" height="175" rx="10" fill="#fbf6ea" stroke="#e4dcc8" stroke-width="1.2" />
 
-    <!-- Metallic Paperclip on Top-Left Corner -->
-    <path d="M 10 -12 L 10 18 A 5 5 0 0 0 20 18 L 20 -6 A 3.5 3.5 0 0 0 13 -6 L 13 13"
-          fill="none" stroke="#9aa3ad" stroke-width="3" stroke-linecap="round" />
+      <!-- Brown Header Band -->
+      <rect x="0" y="0" width="470" height="34" fill="#6b4a2e" />
+      <text x="18" y="23" class="font-display" font-size="15" fill="#fbf6ea" letter-spacing="3">DEV PASS</text>
+      <text x="324" y="22" text-anchor="end" class="font-mono" font-size="10" fill="#f3e3c3">BOARDING &#183; 2026</text>
+      <text x="405" y="22" text-anchor="middle" class="font-mono" font-size="10" fill="#f3e3c3">ADMIT ONE</text>
+
+      <!-- Main Stub Fields -->
+      <text x="18" y="54" class="font-mono" font-size="9" fill="#8a6a4a" letter-spacing="1.5">PASSENGER</text>
+      <text x="18" y="82" class="font-display" font-size="26" fill="#5a3c22">Muhammad Kaysan</text>
+
+      <text x="18" y="104" class="font-mono" font-size="9" fill="#8a6a4a" letter-spacing="1.5">FROM</text>
+      <text x="18" y="126" class="font-display" font-size="18" fill="#5a3c22">IDEA</text>
+      <line x1="78" y1="120" x2="148" y2="120" stroke="#8a6a4a" stroke-width="1.4" stroke-dasharray="3 3" />
+      <polygon points="148,116 156,120 148,124" fill="#8a6a4a" />
+
+      <text x="165" y="104" class="font-mono" font-size="9" fill="#8a6a4a" letter-spacing="1.5">TO</text>
+      <text x="165" y="126" class="font-display" font-size="18" fill="#5a3c22">PRODUCTION</text>
+
+      <text x="18" y="148" class="font-mono" font-size="9" fill="#8a6a4a" letter-spacing="1.5">GATE</text>
+      <text x="92" y="148" class="font-mono" font-size="9" fill="#8a6a4a" letter-spacing="1.5">SEAT</text>
+      <text x="190" y="148" class="font-mono" font-size="9" fill="#8a6a4a" letter-spacing="1.5">HANDLE</text>
+
+      <text x="18" y="165" class="font-mono" font-size="12" font-weight="700" fill="#5a3c22">main</text>
+      <text x="92" y="165" class="font-mono" font-size="12" font-weight="700" fill="#5a3c22">full-stack</text>
+      <text x="190" y="165" class="font-mono" font-size="12" font-weight="700" fill="#5a3c22">@kaysan2519</text>
+
+      <!-- Perforation Divider -->
+      <line x1="340" y1="14" x2="340" y2="161" stroke="#c9b99a" stroke-width="1.5" stroke-dasharray="4 4" />
+
+      <!-- Right Stub Barcode (28 bars across x 362..452) -->
+      <g fill="#2b2b2b">
+        <rect x="362" y="52" width="3" height="76" />
+        <rect x="367" y="52" width="1" height="76" />
+        <rect x="370" y="52" width="4" height="76" />
+        <rect x="376" y="52" width="2" height="76" />
+        <rect x="380" y="52" width="1" height="76" />
+        <rect x="383" y="52" width="3" height="76" />
+        <rect x="388" y="52" width="1" height="76" />
+        <rect x="391" y="52" width="2" height="76" />
+        <rect x="395" y="52" width="4" height="76" />
+        <rect x="401" y="52" width="1" height="76" />
+        <rect x="404" y="52" width="3" height="76" />
+        <rect x="409" y="52" width="1" height="76" />
+        <rect x="412" y="52" width="2" height="76" />
+        <rect x="416" y="52" width="1" height="76" />
+        <rect x="419" y="52" width="4" height="76" />
+        <rect x="425" y="52" width="2" height="76" />
+        <rect x="429" y="52" width="1" height="76" />
+        <rect x="432" y="52" width="3" height="76" />
+        <rect x="437" y="52" width="1" height="76" />
+        <rect x="440" y="52" width="2" height="76" />
+        <rect x="444" y="52" width="1" height="76" />
+        <rect x="447" y="52" width="3" height="76" />
+        <rect x="451" y="52" width="1" height="76" />
+      </g>
+
+      <text x="407" y="144" text-anchor="middle" class="font-mono" font-size="9" fill="#5a3c22">KAYSAN2519</text>
+      <text x="407" y="160" text-anchor="middle" class="font-mono" font-size="9" fill="#8a6a4a">SEQ 001</text>
+
+      <!-- Animated Barcode Laser Scan Line -->
+      <rect class="scan" x="358" y="52" width="98" height="2" fill="#ff4d4d" opacity="0.85" filter="url(#scan-glow)" />
+    </g>
   </g>
 
-  <!-- Layer 9: Coffee Mug "</>" with Animated Steam (Bottom-Left) -->
-  <g transform="translate(40,280)">
-    <!-- Soft Ground Contact Shadow -->
+  <!-- Layer 9: Die-Cut Tech Stickers -->
+  <!-- TypeScript Sticker (Top-Right Corner of Pass) -->
+  <g transform="translate(832,118) rotate(12)" filter="url(#soft-shadow)">
+    <rect x="0" y="0" width="50" height="50" rx="10" fill="#ffffff" />
+    <rect x="4" y="4" width="42" height="42" rx="7" fill="#3178c6" />
+    <text x="42" y="42" text-anchor="end" class="font-display" font-size="20" fill="#ffffff">TS</text>
+  </g>
+
+  <!-- React Sticker (Bottom-Left Corner of Pass) -->
+  <g transform="translate(352,292)" filter="url(#soft-shadow)">
+    <circle cx="0" cy="0" r="24" fill="#ffffff" />
+    <circle cx="0" cy="0" r="20" fill="#20232a" />
+    <ellipse cx="0" cy="0" rx="14" ry="5.5" fill="none" stroke="#61dafb" stroke-width="1.6" />
+    <ellipse cx="0" cy="0" rx="14" ry="5.5" fill="none" stroke="#61dafb" stroke-width="1.6" transform="rotate(60)" />
+    <ellipse cx="0" cy="0" rx="14" ry="5.5" fill="none" stroke="#61dafb" stroke-width="1.6" transform="rotate(120)" />
+    <circle cx="0" cy="0" r="2.6" fill="#61dafb" />
+  </g>
+
+  <!-- Next.js Sticker (Right of Pass) -->
+  <g transform="translate(904,182)" filter="url(#soft-shadow)">
+    <circle cx="0" cy="0" r="24" fill="#ffffff" />
+    <circle cx="0" cy="0" r="20" fill="#000000" />
+    <text x="0" y="7" text-anchor="middle" class="font-display" font-size="20" fill="#ffffff">N</text>
+  </g>
+
+  <!-- Flutter Sticker (Top-Left of Pass) -->
+  <g transform="translate(330,112)" filter="url(#soft-shadow)">
+    <circle cx="0" cy="0" r="21" fill="#ffffff" />
+    <polygon points="1.5,-13 9.5,-13 -5.5,2 -9.5,-2" fill="#42a5f5" />
+    <polygon points="1.5,-1 9.5,-1 -2,10.5 -6,6.5" fill="#42a5f5" />
+    <polygon points="-2,3 1.5,-1 9.5,-1 1.5,7" fill="#29b6f6" />
+    <polygon points="1.5,7 9.5,14 1.5,14 -2.5,10" fill="#0d47a1" />
+  </g>
+
+  <!-- Layer 10: Git-Graph Doodle (Bottom-Centre) -->
+  <g transform="translate(440,335)">
+    <!-- Main Branch Line -->
+    <path d="M 0,25 H 340" fill="none" stroke="#f4f1e6" stroke-width="2.5" opacity="0.85" />
+
+    <!-- Feature Branch Curve -->
+    <path id="feat-branch" d="M 60,25 C 90,25 95,3 125,3 H 230 C 260,3 265,25 295,25"
+          fill="none" stroke="#f2b544" stroke-width="2.5" />
+
+    <!-- Main Commit Nodes -->
+    <g fill="#4f8a3c" stroke="#f4f1e6" stroke-width="2.5">
+      <circle cx="20" cy="25" r="5" />
+      <circle cx="60" cy="25" r="5" />
+      <circle cx="180" cy="25" r="5" />
+      <circle cx="295" cy="25" r="5" />
+      <circle cx="330" cy="25" r="5" />
+    </g>
+
+    <!-- Feature Branch Commit Nodes -->
+    <g fill="#4f8a3c" stroke="#f2b544" stroke-width="2.5">
+      <circle cx="150" cy="3" r="5" />
+      <circle cx="205" cy="3" r="5" />
+    </g>
+
+    <!-- Branch Labels & HEAD Tag -->
+    <text x="-2" y="44" class="font-mono" font-size="9" fill="#f4f1e6" opacity="0.82">main</text>
+    <text x="128" y="-7" class="font-mono" font-size="9" fill="#f2b544">feat/portfolio-v2</text>
+
+    <rect x="318" y="32" width="30" height="12" rx="2" fill="none" stroke="#f4f1e6" stroke-width="1" opacity="0.85" />
+    <text x="333" y="41" text-anchor="middle" class="font-mono" font-size="8" fill="#f4f1e6" opacity="0.9">HEAD</text>
+
+    <!-- Travelling Green Commit Dot -->
+    <circle r="4" fill="#39d353">
+      <animateMotion dur="5s" repeatCount="indefinite">
+        <mpath href="#feat-branch" />
+      </animateMotion>
+    </circle>
+  </g>
+
+  <!-- Layer 11: Coffee Mug "</>" with Animated Steam (Bottom-Right) -->
+  <g transform="translate(880,282)">
     <ellipse cx="50" cy="94" rx="36" ry="5.5" fill="#13260d" opacity="0.28" />
-
-    <!-- Rising Animated Steam Wisps -->
     <path class="steam-1" d="M 30 8 Q 25 -2, 31 -10 T 29 -24" fill="none" stroke="#f4f1e6" stroke-width="3" stroke-linecap="round" />
     <path class="steam-2" d="M 48 6 Q 43 -5, 49 -14 T 47 -28" fill="none" stroke="#f4f1e6" stroke-width="3" stroke-linecap="round" />
     <path class="steam-3" d="M 66 8 Q 61 -2, 67 -10 T 65 -24" fill="none" stroke="#f4f1e6" stroke-width="3" stroke-linecap="round" />
 
-    <!-- Mug Handle -->
     <path d="M 80 34 C 102 34, 102 74, 80 74" fill="none" stroke="#2b2b2b" stroke-width="8" stroke-linecap="round" />
     <path d="M 80 34 C 98 34, 98 74, 80 74" fill="none" stroke="#f4f1e6" stroke-width="3.5" stroke-linecap="round" />
 
-    <!-- Mug Body -->
     <path d="M 14 20 L 82 20 L 82 78 A 14 14 0 0 1 68 92 L 28 92 A 14 14 0 0 1 14 78 Z"
           fill="#f4f1e6" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round" filter="url(#soft-shadow)" />
 
-    <!-- Mug Rim & Coffee Surface -->
     <ellipse cx="48" cy="20" rx="34" ry="8.5" fill="#f4f1e6" stroke="#2b2b2b" stroke-width="3" />
     <ellipse cx="48" cy="21" rx="28" ry="5.5" fill="#5a3c22" />
 
-    <!-- Code Print on Mug -->
     <text x="48" y="64" text-anchor="middle" class="font-mono" font-size="20" font-weight="700" fill="#6b4a2e">&lt;/&gt;</text>
   </g>
 
-  <!-- Layer 10: Yellow Pencil (Bottom-Right) -->
-  <g transform="translate(788,366) rotate(-6)" filter="url(#soft-shadow)">
-    <!-- Eraser -->
-    <rect x="0" y="1" width="16" height="16" rx="4" fill="#e88c8c" stroke="#b86363" stroke-width="0.8" />
-    <!-- Metallic Ferrule -->
-    <rect x="14" y="0.5" width="14" height="17" fill="#b0b0b0" stroke="#858585" stroke-width="0.6" />
-    <line x1="18" y1="1" x2="18" y2="17" stroke="#7d7d7d" stroke-width="1" />
-    <line x1="23" y1="1" x2="23" y2="17" stroke="#7d7d7d" stroke-width="1" />
-    <!-- Yellow Barrel -->
-    <rect x="28" y="0.5" width="164" height="17" fill="#f2c94c" />
-    <rect x="28" y="4.5" width="164" height="4" fill="#e6b835" />
-    <rect x="28" y="12.5" width="164" height="5" fill="#d9aa2b" />
-    <!-- Wooden Cone Tip -->
-    <polygon points="192,0.5 220,9 192,17.5" fill="#e9c49a" />
-    <!-- Graphite Tip -->
-    <polygon points="211,6.1 220,9 211,11.9" fill="#333333" />
-  </g>
-
-  <!-- Layer 11: Distressed Red Rubber Stamp (Bottom-Right) -->
-  <g transform="translate(1078,266) rotate(-14)" filter="url(#ink-rough)">
+  <!-- Layer 12: Distressed Red Rubber Stamp (Bottom-Right) -->
+  <g transform="translate(1085,280) rotate(-14)" filter="url(#ink-rough)">
     <circle cx="0" cy="0" r="52" fill="none" stroke="#ff6b57" stroke-width="3" opacity="0.9" />
     <circle cx="0" cy="0" r="34" fill="none" stroke="#ff6b57" stroke-width="1.6" opacity="0.9" />
     <text class="font-mono" font-size="8.6" font-weight="700" fill="#ff6b57" opacity="0.95" letter-spacing="1.3">
@@ -454,7 +561,4 @@
     <text x="0" y="6" text-anchor="middle" class="font-display" font-size="18" fill="#ff6b57" opacity="0.95">2026</text>
     <line x1="-21" y1="13" x2="21" y2="13" stroke="#ff6b57" stroke-width="1.4" opacity="0.9" />
   </g>
-
-  <!-- Layer 12: Bottom-Centre Hint -->
-  <text x="640" y="388" text-anchor="middle" class="font-mono" font-size="11" fill="#f4f1e6" opacity="0.72">&#8595; scroll to explore</text>
 </svg>
