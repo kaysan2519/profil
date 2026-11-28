@@ -7,7 +7,7 @@
 
   <!-- Dynamic Typing Subtitle -->
   <a href="https://github.com/kaysan2519">
-    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=16&duration=2800&pause=1100&color=C084FC&center=true&vCenter=true&width=620&lines=Fullstack+Developer+%26+Software+Engineer;Building+Modern%2C+Scalable+%26+Production-Ready+Apps;TypeScript+%E2%80%A2+Next.js+%E2%80%A2+React+19+%E2%80%A2+Flutter+%E2%80%A2+Node.js;Clean+Architecture+%E2%80%A2+High-Performance+APIs+%E2%80%A2+Fluid+UI%2FUX" alt="Typing Subtitle" />
+    <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=16&duration=2800&pause=1100&color=4F8A3C&center=true&vCenter=true&width=620&lines=Fullstack+Developer+%26+Software+Engineer;Building+Modern%2C+Scalable+%26+Production-Ready+Apps;TypeScript+%E2%80%A2+Next.js+%E2%80%A2+React+19+%E2%80%A2+Flutter+%E2%80%A2+Node.js;Clean+Architecture+%E2%80%A2+High-Performance+APIs+%E2%80%A2+Fluid+UI%2FUX" alt="Typing Subtitle" />
   </a>
 
   <br/>
@@ -100,11 +100,11 @@
 
 <h4 align="center">Data Structures, Algorithms &amp; Architecture</h4>
 <p align="center">
-  <img src="https://img.shields.io/badge/Data_Structures-10B981?style=for-the-badge&logo=codeforces&logoColor=white" alt="Data Structures" />
-  <img src="https://img.shields.io/badge/Search_&_Sorting_Algorithms-F59E0B?style=for-the-badge&logo=databricks&logoColor=white" alt="Algorithms" />
-  <img src="https://img.shields.io/badge/Clean_Architecture-6366F1?style=for-the-badge&logo=speedtest&logoColor=white" alt="Clean Architecture" />
-  <img src="https://img.shields.io/badge/OOP_Principles-8B5CF6?style=for-the-badge&logo=cplusplus&logoColor=white" alt="OOP" />
-  <img src="https://img.shields.io/badge/RESTful_System_Design-EC4899?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="System Design" />
+  <img src="https://img.shields.io/badge/Data_Structures-4F8A3C?style=for-the-badge&logo=codeforces&logoColor=white" alt="Data Structures" />
+  <img src="https://img.shields.io/badge/Search_&_Sorting_Algorithms-F2B544?style=for-the-badge&logo=databricks&logoColor=black" alt="Algorithms" />
+  <img src="https://img.shields.io/badge/Clean_Architecture-3D6E2F?style=for-the-badge&logo=speedtest&logoColor=white" alt="Clean Architecture" />
+  <img src="https://img.shields.io/badge/OOP_Principles-6B4A2E?style=for-the-badge&logo=cplusplus&logoColor=white" alt="OOP" />
+  <img src="https://img.shields.io/badge/RESTful_System_Design-E8622C?style=for-the-badge&logo=diagramsdotnet&logoColor=white" alt="System Design" />
 </p>
 
 ---
@@ -189,12 +189,12 @@
     <tr>
       <td align="center" valign="middle">
         <a href="https://github.com/kaysan2519">
-          <img src="https://github-readme-stats.vercel.app/api?username=kaysan2519&show_icons=true&theme=midnight-purple&hide_border=false&border_color=4c1d95&bg_color=110726&title_color=c084fc&icon_color=a855f7&text_color=cbd5e1&rank_icon=github&locale=en" alt="GitHub Stats" height="175" />
+          <img src="https://github-readme-stats.vercel.app/api?username=kaysan2519&show_icons=true&theme=tokyonight&hide_border=false&border_color=4f8a3c&bg_color=142411&title_color=f2b544&icon_color=39d353&text_color=f4f1e6&rank_icon=github&locale=en" alt="GitHub Stats" height="175" />
         </a>
       </td>
       <td align="center" valign="middle">
         <a href="https://github.com/kaysan2519">
-          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kaysan2519&layout=compact&theme=midnight-purple&hide_border=false&border_color=4c1d95&bg_color=110726&title_color=c084fc&icon_color=a855f7&text_color=cbd5e1&langs_count=6" alt="Top Languages" height="175" />
+          <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=kaysan2519&layout=compact&theme=tokyonight&hide_border=false&border_color=4f8a3c&bg_color=142411&title_color=f2b544&icon_color=39d353&text_color=f4f1e6&langs_count=6" alt="Top Languages" height="175" />
         </a>
       </td>
     </tr>
@@ -203,7 +203,7 @@
   <br/>
 
   <a href="https://github.com/kaysan2519">
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=kaysan2519&theme=tokyonight&background=110726&border=4C1D95&stroke=C084FC&ring=C084FC&fire=A855F7&currStreakNum=C084FC&sideNums=F5F3FF&sideLabels=A78BFA&dates=7C3AED&hide_border=false" alt="GitHub Streak" width="95%" />
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=kaysan2519&theme=tokyonight&background=142411&border=4F8A3C&stroke=4F8A3C&ring=F2B544&fire=E8622C&currStreakNum=39D353&sideNums=FBF6EA&sideLabels=F2B544&dates=A3B899&hide_border=false" alt="GitHub Streak" width="95%" />
   </a>
 </div>
 
